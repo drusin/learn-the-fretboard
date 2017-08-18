@@ -29,8 +29,8 @@ function getFretForNote(note, gString) {
 				return i;
 			}
 		}
-
 	}
+
 	var stringOffset = findInArray(gString);
 	var noteInArray = findInArray(note);
 
@@ -50,6 +50,9 @@ var uncommonFlatCheckbox = document.getElementById("uncommon-flat-checkbox");
 
 var timeInput = document.getElementById("wait-input");
 var output = document.getElementById("output-div");
+
+var fretboardContainer = document.getElementById("fretboard-div");
+var fretSizes = [56, 53, 50, 47, 45, 42, 40, 37, 35, 34, 31, 30];
 
 function play() {
 	var currentGString = gStrings[Math.floor(Math.random() * gStrings.length)];
@@ -80,3 +83,16 @@ function play() {
 }
 
 document.getElementById("start-button").addEventListener("click", play);
+
+function addGString() {
+	var currentString = document.createElement("div");
+	currentString.setAttribute("class", "g-string-div");
+	fretboardContainer.appendChild(currentString);
+	var i;
+	for (i = 0; i < fretSizes.length; i++) {
+		var currentSpan = document.createElement("div");
+		currentSpan.setAttribute("class", "fret-div");
+		currentSpan.style.width = fretSizes[i] + "px";
+		currentString.appendChild(currentSpan);
+	}
+}
