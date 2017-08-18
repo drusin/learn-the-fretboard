@@ -42,30 +42,41 @@ function getFretForNote(note, gString) {
 	return fretPosition;
 }
 
+var naturalNotesCheckbox = document.getElementById("natural-checkbox");
+var commonSharpCheckbox = document.getElementById("common-sharp-checkbox");
+var uncommonSharpCheckbox = document.getElementById("uncommon-sharp-checkbox");
+var commonFlatCheckbox = document.getElementById("common-flat-checkbox");
+var uncommonFlatCheckbox = document.getElementById("uncommon-flat-checkbox");
+
+var timeInput = document.getElementById("wait-input");
+var output = document.getElementById("output-div");
+
 function play() {
 	var currentGString = gStrings[Math.floor(Math.random() * gStrings.length)];
 
 	var currentNotes = [];
-	if (document.getElementById("natural-checkbox").checked) {
+	if (naturalNotesCheckbox.checked) {
 		currentNotes = currentNotes.concat(naturalNotes);
 	}
-	if (document.getElementById("common-sharp-checkbox").checked) {
+	if (commonSharpCheckbox.checked) {
 		currentNotes = currentNotes.concat(commonSharpNotes);
 	}
-	if (document.getElementById("uncommon-sharp-checkbox").checked) {
+	if (uncommonSharpCheckbox.checked) {
 		currentNotes = currentNotes.concat(uncommonSharpNotes);
 	}
-	if (document.getElementById("common-flat-checkbox").checked) {
+	if (commonFlatCheckbox.checked) {
 		currentNotes = currentNotes.concat(commonFlatNotes);
 	}
-	if (document.getElementById("uncommon-flat-checkbox").checked) {
+	if (uncommonFlatCheckbox.checked) {
 		currentNotes = currentNotes.concat(uncommonFlatNotes);
 	}
 
 	var currentNote = currentNotes[Math.floor(Math.random() * currentNotes.length)];
 
-	var output = document.getElementById("output-div");
-	output.innerHTML = "Find the note <b>" + currentNote + "</b> on the <b>" + currentGString + "</b> String! " + getFretForNote(currentNote, currentGString);
+	output.innerHTML = "Find the note <b>" + currentNote + "</b> on the <b>" + currentGString + "</b> String!";
+	setTimeout(function () {
+		output.innerHTML = "Find the note <b>" + currentNote + "</b> on the <b>" + currentGString + "</b> String!<br><br><b>" + getFretForNote(currentNote, currentGString) + "<br>";
+	}, timeInput.value * 1000);
 }
 
 document.getElementById("start-button").addEventListener("click", play);
