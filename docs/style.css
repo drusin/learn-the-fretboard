@@ -6,3 +6,24 @@
 
 .g-string-div {
 }
+
+#drawing-area {
+	width: 600px;
+	height: 300px;
+}
+
+#fretboard {
+	fill: brown;
+	width: 500px;
+	height: 100px;
+}
+
+.fret {
+	stroke: orange;
+	stroke-width: 2;
+}
+
+.string {
+	stroke-width: 3;
+	stroke: silver
+}

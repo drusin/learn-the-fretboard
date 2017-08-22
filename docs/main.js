@@ -52,7 +52,7 @@ var timeInput = document.getElementById("wait-input");
 var output = document.getElementById("output-div");
 
 var fretboardContainer = document.getElementById("fretboard-div");
-var fretSizes = [56, 53, 50, 47, 45, 42, 40, 37, 35, 34, 31, 30];
+var fretSizes = [56, 109, 159, 206, 251, 293, 333, 370, 405, 439, 470, 500];
 
 function play() {
 	var currentGString = gStrings[Math.floor(Math.random() * gStrings.length)];
