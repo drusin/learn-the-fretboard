@@ -8,7 +8,7 @@
 }
 
 #drawing-area {
-	width: 600px;
+	width: 900px;
 	height: 300px;
 }
 
@@ -19,17 +19,24 @@
 }
 
 .fret {
-	stroke: orange;
-	stroke-width: 2;
+	fill: orange;
+	height:15px;
+	width: 3px;
 }
 
 .string {
-	stroke-width: 3;
-	stroke: silver
+	fill: silver;
+	height: 2px;
 }
 
 .fretboard-part {
 	fill: brown;
+	width: 500px;
+	height: 15px;
+}
+
+.fretboard-part-dotted {
+	fill: #b95e2c;
 	width: 500px;
 	height: 15px;
 }

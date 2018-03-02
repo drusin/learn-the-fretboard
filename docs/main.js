@@ -85,26 +85,70 @@ document.getElementById("start-button").addEventListener("click", play);
 
 const DRAWING_AREA = document.getElementById("drawing-area");
 
-addGString();
+const THREAD_START_POINTS = [
+	0,
+	56,
+	109,
+	159,
+	206,
+	251,
+	293,
+	333,
+	370,
+	405,
+	439,
+	470,
+	500
+];
 
-function addGString() {
-	let currentFretboardPart = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-	currentFretboardPart.setAttribute("class", "fretboard-part");
-	DRAWING_AREA.appendChild(currentFretboardPart);
-	
-	let currentString = document.createElementNS("http://www.w3.org/2000/svg", "line");
-	currentString.setAttribute("class", "string");
-	currentString.setAttribute("x1", "0");
-	currentString.setAttribute("x2", "500");
-	currentString.setAttribute("y1", "7");
-	currentString.setAttribute("y2", "7");
-	DRAWING_AREA.appendChild(currentString);
-	// currentString.setAttribute("class", "g-string-div");
-	// FRETBOARD_CONTAINER.appendChild(currentString);
-	// for (let i = 0; i < FRET_SIZES.length; i++) {
-	// 	let currentSpan = document.createElement("div");
-	// 	currentSpan.setAttribute("class", "fret-div");
-	// 	currentSpan.style.width = FRET_SIZES[i] + "px";
-	// 	currentString.appendChild(currentSpan);
-	// }
+const THREAD_LENGTHS = [
+	56,
+	53,
+	50,
+	47,
+	45,
+	42,
+	40,
+	37,
+	35,
+	34,
+	31,
+	30
+];
+
+const DOTTED_THREADS = [
+	3,
+	5,
+	7,
+	9,
+	12
+];
+
+addGString(0);
+addGString(1);
+addGString(2);
+addGString(3);
+
+function addGString(number) {
+	THREAD_LENGTHS.forEach((thread, i) => {
+		const currentFretboardPart = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+		currentFretboardPart.setAttribute("class", DOTTED_THREADS.indexOf(i + 1) < 0 ? "fretboard-part" : "fretboard-part-dotted");
+		currentFretboardPart.setAttribute("x", String(THREAD_START_POINTS[i]));
+		currentFretboardPart.setAttribute("y", String(number * 15));
+		currentFretboardPart.style.width = thread;
+		DRAWING_AREA.appendChild(currentFretboardPart);
+		
+		const currentFretPart = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+		currentFretPart.setAttribute("class", "fret");
+		currentFretPart.setAttribute("x", String(THREAD_START_POINTS[i] + thread - 3));
+		currentFretPart.setAttribute("y", String(number * 15));
+		DRAWING_AREA.appendChild(currentFretPart);
+		
+		const currentStringPart = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+		currentStringPart.setAttribute("class", "string");
+		currentStringPart.setAttribute("x", String(THREAD_START_POINTS[i]));
+		currentStringPart.setAttribute("y", String(6 + number * 15));
+		currentStringPart.style.width = thread;
+		DRAWING_AREA.appendChild(currentStringPart);
+	});
 }
