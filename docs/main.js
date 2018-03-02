@@ -124,10 +124,10 @@ const DOTTED_THREADS = [
 	12
 ];
 
-addGString(0);
 addGString(1);
 addGString(2);
 addGString(3);
+addGString(4);
 
 function addGString(number) {
 	THREAD_LENGTHS.forEach((thread, i) => {
